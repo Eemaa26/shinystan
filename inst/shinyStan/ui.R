@@ -46,9 +46,21 @@ shinyUI(
                                  wellPanel(
                                    fluidRow(
                                      uiOutput("ui_multiparam_selectize"),
-                                     column(3, offset = 1, sliderInput("param_plot_ci_level", h5("Credible interval"), ticks = FALSE, min = 50, max = 95, value = 50, step = 5, post = "%"))
-                                   ),
-                                   tags$div(class = "pull-right",style = "line-height: 150%;", checkboxInput("multiparam_options", label = span(style = "font-size: 12px;","Show/hide customization panel"), value = TRUE))
+                                     column(3, sliderInput("param_plot_ci_level", h5("Credible interval"), ticks = FALSE, min = 50, max = 95, value = 50, step = 5, post = "%")),
+                                     column(2, offset = 1, bsButton("multiparam_options", label = "Customize", type = "toggle", value = TRUE))
+#                                      column(2, tags$div(HTML(
+#                                       "
+# <li class='tg-list-item'>
+# <h4>Customize</h4>
+# <input id='multiparam_options' class='tgl tgl-flat' type='checkbox'>
+# <label class='tgl-btn' for='multiparam_options'></label>
+# </li>"
+#                                       )))
+                                     
+                                     
+                                     # column(2, tags$div(class = "pull-right", checkboxInput("multiparam_options", label = span(style = "font-size: 12px;","Show/hide customization panel"), value = TRUE)))
+                                   )
+                                   # tags$div(class = "pull-right",style = "line-height: 150%;", checkboxInput("multiparam_options", label = span(style = "font-size: 12px;","Show/hide customization panel"), value = TRUE))
                                  ),
                                  conditionalPanel(condition = "input.multiparam_options == true",
                                                   uiOutput("ui_multiparam_customize")),
